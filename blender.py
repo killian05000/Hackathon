@@ -8,7 +8,7 @@ from abc import ABC, abstractmethod
 import csv
 import bpy
 
-Impact = collection.namedtuple('Impact', ['x', 'y', 'strength', 'timestamp'])
+Impact = collection.namedtuple('Impact', ['x', 'y', 'strength', 'time'])
 
 class ImpactReader(ABC):
     @abstractmethod
@@ -23,8 +23,8 @@ class ImpactZone(ABC):
 class CSVImpactReader(ImpactReader):
     def read(fileName):
         with open(fileName) as csvfile:
-            minImpact = Impact(x = -180, y = -90, strength = -1, timestamp = -1)
-            maxImpact = Impact(x = 180, y = 90, strength = 0, timestamp = 0)
+            minImpact = Impact(x = -180, y = -90, strength = -1, time = -1)
+            maxImpact = Impact(x = 180, y = 90, strength = 0, time = 0)
             for impact in map(Impact._make, csv.reader(csvfile)):
                 print(emp.name, emp.title)
 
