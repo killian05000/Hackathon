@@ -1,6 +1,12 @@
 import bpy
 
-Impact = collection.namedtuple('Impact', ['x', 'y', 'strength', 'time'])
+# Impact file
+
+import collections
+from abc import ABC, abstractmethod
+import csv
+
+Impact = collections.namedtuple('Impact', ['x', 'y', 'strength', 'when'])
 
 class ImpactReader(ABC):
     @abstractmethod
@@ -19,6 +25,15 @@ class CSVImpactReader(ImpactReader):
             maxImpact = Impact(x = 180, y = 90, strength = 0, time = 0)
             for impact in map(Impact._make, csv.reader(csvfile)):
                 print(emp.name, emp.title)
+
+class FakeImpactReader(ImpactReader):
+    def getImpacts(self):
+        impacts = []
+        max = 10
+        for i in range(max):
+            impacts.append(Impact(i/max, i/max, i/max, i/max))
+        return impacts
+
 
 class BlenderImpactZone(ImpactZone):
     pass
