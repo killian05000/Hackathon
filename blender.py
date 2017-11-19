@@ -23,6 +23,14 @@ class ImpactZone(ABC):
     def applyImpact(self, impact):
         pass
 
+class CSVImpactReader(ImpactReader):
+    def read(fileName):
+        with open(fileName) as csvfile:
+            minImpact = Impact(x = -180, y = -90, strength = -1, time = -1)
+            maxImpact = Impact(x = 180, y = 90, strength = 0, time = 0)
+            for impact in map(Impact._make, csv.reader(csvfile)):
+                print(emp.name, emp.title)
+
 class FakeImpactReader(ImpactReader):
     def getImpacts(self):
         impacts = []
@@ -31,7 +39,6 @@ class FakeImpactReader(ImpactReader):
             impacts.append(Impact(random.random(), random.random(), random.random(), random.random()))
         return impacts
 
-# End Impact file
 
 class BlenderImpactZone(ImpactZone):
     def __init__(self):

@@ -9,6 +9,25 @@ import csv
 
 Impact = collections.namedtuple('Impact', ['x', 'y', 'strength', 'when'])
 
+fname = "database.csv"
+table = []
+with open (fname) as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=',')
+    higher = 2005
+    i =0
+    for row in reader:
+        i=i+1
+        x = float(row['Latitude'])/180
+        y = float(row['Longitude'])/90
+        rad = float(row['Radius'])/2000
+        year = (int(row['Year'])-1945)/60
+        print(i, " : ",x,y,rad,year)
+        table.append(Impact(x,y,rad,year))
+        compare = int(row['Year'])
+        if compare < higher:
+            higher = int(row['Year'])
+    print("higher:",higher)
+
 class ImpactReader(ABC):
     @abstractmethod
     def getImpacts(self):
@@ -33,12 +52,18 @@ class FakeImpactZone(ImpactZone):
 
 class CSVImpactReader(ImpactReader):
     def read(fileName):
-        with open(fileName) as csvfile:
-            minImpact = Impact(x = -180, y = -90, strength = -1, when = -1)
-            maxImpact = Impact(x = 180, y = 90, strength = 0, when = 0)
-            for impact in map(Impact._make, csv.reader(csvfile)):
-                # lattitude = impact.y
-                # longitude = impact.x
-                latitude_percent = y
-
-                print(emp.name, emp.title)
+        fname = "database.csv"
+        table = []
+        with open (fname) as csvfile:
+            reader = csv.DictReader(csvfile, delimiter=',')
+            #higher = 2005
+            #i =0
+            for row in reader:
+                #i=i+1
+                x = float(row['Latitude'])/180
+                y = float(row['Longitude'])/90
+                rad = float(row['Radius'])/2000
+                year = (int(row['Year'])-1945)/60
+                #print(i, " : ",x,y,rad,year)
+                table.append(Impact(x,y,rad,year))
+        return table
