@@ -26,6 +26,10 @@ class CSVImpactReader(ImpactReader):
             minImpact = Impact(x = -180, y = -90, strength = -1, time = -1)
             maxImpact = Impact(x = 180, y = 90, strength = 0, time = 0)
             for impact in map(Impact._make, csv.reader(csvfile)):
+                latitude = impact.x
+                longitude = impact.y
+                latitude_percent = x/180
+                longitude_percent = y/90
                 print(emp.name, emp.title)
 
 class BlenderImpactZone(ImpactZone):
