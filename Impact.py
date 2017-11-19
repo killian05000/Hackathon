@@ -60,8 +60,8 @@ class CSVImpactReader(ImpactReader):
             #i =0
             for row in reader:
                 #i=i+1
-                x = float(row['Latitude'])/180
-                y = float(row['Longitude'])/90
+                x = float(row['Longitude'])/180
+                y = float(row['Latitude'])/90
                 rad = float(row['Radius'])/2000
                 year = (int(row['Year'])-1945)/60
                 #print(i, " : ",x,y,rad,year)
