@@ -1,32 +1,4 @@
-
-# https://upload.wikimedia.org/wikipedia/commons/0/00/Mercator-proj.jpg
-# https://docs.python.org/3.5/library/collections.html#collections.namedtuple
-# https://docs.python.org/3.5/library/csv.html#module-csv
-
-import collection
-from abc import ABC, abstractmethod
-import csv
 import bpy
-
-Impact = collection.namedtuple('Impact', ['x', 'y', 'strength', 'when'])
-
-class ImpactReader(ABC):
-    @abstractmethod
-    def getImpacts(self):
-        pass
-
-class ImpactZone(ABC):
-    @abstractmethod
-    def applyImpact(self, impact):
-        pass
-
-class CSVImpactReader(ImpactReader):
-    def read(fileName):
-        with open(fileName) as csvfile:
-            minImpact = Impact(x = -180, y = -90, strength = -1, when = -1)
-            maxImpact = Impact(x = 180, y = 90, strength = 0, when = 0)
-            for impact in map(Impact._make, csv.reader(csvfile)):
-                print(emp.name, emp.title)
 
 class BlenderImpactZone(ImpactZone):
     pass
