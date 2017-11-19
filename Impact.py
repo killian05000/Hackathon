@@ -9,6 +9,15 @@ import csv
 
 Impact = collections.namedtuple('Impact', ['x', 'y', 'strength', 'when'])
 
+fname = "database.csv"
+table = []
+with open (fname) as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=';')
+    for row in reader:
+        print(row['lat']," | ",row['lon'])
+        #table.append(Impact(row['lat'],row['lon'],"0000",row['date'])
+#return table
+
 class ImpactReader(ABC):
     @abstractmethod
     def getImpacts(self):
